@@ -5,6 +5,8 @@ import ProductsScreen from './screens/ProductsScreen';
 import { Icon } from 'react-native-elements';
 import AppLoading from 'expo-app-loading';
 
+import BreadNavigator from './navigation/BreadNavigator';
+
 import {
   useFonts,
   Ubuntu_300Light,
@@ -57,19 +59,21 @@ export default function App() {
   }
 
   return (
-    <View style={{ flex: 1, paddingTop: 40 }}>
-      <View style={styles.topBarContainer}>
-        <Icon name='bell'
-          type='font-awesome-5'
-          color='#000' />
-        <Text style={styles.title}>magdely</Text>
-        <Icon name='user'
-          type='font-awesome-5'
-          color='#000' />
-      </View>
+    // <View style={{ flex: 1, paddingTop: 40 }}>
+    //   <View style={styles.topBarContainer}>
+    //     <Icon name='bell'
+    //       type='font-awesome-5'
+    //       color='#000' />
+    //     <Text style={styles.title}>magdely</Text>
+    //     <Icon name='user'
+    //       type='font-awesome-5'
+    //       color='#000' />
+    //   </View>
 
-      {content}
-    </View>
+    //   {content}
+    // </View>
+
+    <BreadNavigator />
   );
 }
 
