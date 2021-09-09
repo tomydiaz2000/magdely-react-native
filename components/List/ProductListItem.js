@@ -4,7 +4,8 @@ import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 const ProductListItem = (props) => {
     const { handleModalOpen, item } = props;
     return (
-        <TouchableOpacity onPress={() => handleModalOpen(item.id)}>
+// onPress={() => handleModalOpen(item.id)}
+         <TouchableOpacity onPress={() => handleModalOpen(item.id)}> 
             <View style={styles.listItem}>
                 <Image source={{
                     uri: item.imageSource,

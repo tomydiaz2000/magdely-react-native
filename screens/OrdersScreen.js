@@ -6,7 +6,7 @@ import AddModal from '../components/AddModal';
 import List from '../components/List';
 import OrderListItem from '../components/List/OrderListItem';
 
-const OrdersScreen = ({handleNavigation}) => {
+const OrdersScreen = () => {
     const [itemList, setItemList] = useState([
         {
             id: 1,
@@ -99,17 +99,12 @@ const OrdersScreen = ({handleNavigation}) => {
 
             <DeleteModal handleCancelModal={handleCancelModal} handleConfirmDelete={handleConfirmDelete} itemSeleted={seletedItem} modalIsVisible={modalIsVisible} />
             <AddModal handleCancelModal={handleCancelModal} modalIsVisible={addModalIsVisible} handleAddOrder={handleAddOrder} />
+            
             <View style={{ flexDirection: 'row' }}>
                 <TouchableOpacity style={styles.containerButton} onPress={() => handleAddModelOpen()}>
 
                     <View style={[styles.button, styles.shadow]}>
                         <Text style={styles.buttonText}>Agregar Pedido</Text>
-                    </View>
-                </TouchableOpacity>
-                <TouchableOpacity style={{ ...styles.containerButton, flex: 1 }} onPress={() => handleNavigation()}>
-
-                    <View style={[styles.button, styles.shadow]}>
-                        <Text style={styles.buttonText}>Ver Productos</Text>
                     </View>
                 </TouchableOpacity>
             </View>

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { FlatList, StyleSheet, Text, TouchableOpacity, View, Image, Alert } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View, Alert } from 'react-native';
 import ProductListItem from '../components/List/ProductListItem';
 import List from '../components/List';
 
-const ProductsScreen = ({handleNavigation}) => {
+const ProductsScreen = ({ navigation }) => {
     const [itemList, setItemList] = useState([
         {
             id: 1,
@@ -117,15 +117,7 @@ const ProductsScreen = ({handleNavigation}) => {
                         <Text style={styles.buttonText}>Agregar Producto</Text>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity style={{...styles.containerButton, flex: 1}} onPress={() => handleNavigation()}>
-
-                    <View style={[styles.button, styles.shadow]}>
-                        <Text style={styles.buttonText}>Ver Pedidos</Text>
-                    </View>
-                </TouchableOpacity>
             </View>
-
-
         </View>
     );
 }
