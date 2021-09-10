@@ -14,33 +14,35 @@ const OrderStack = createNativeStackNavigator();
 
 function OrderStackScreen() {
   return (
-    <OrderStack.Navigator >
-      <OrderStack.Screen name="List" component={OrdersScreen} options={{ 
-          title: 'magdely',
-          headerTitleAlign: 'center',
-          headerTitleStyle: {
-            fontFamily: 'Ubuntu_700Bold',
-            fontSize: 40,
-        } 
+    <OrderStack.Navigator>
+      <OrderStack.Screen name="List" component={OrdersScreen} options={{
+        title: 'magdely',
+        headerTitleAlign: 'center',
+        headerTitleStyle: {
+          fontFamily: 'Ubuntu_700Bold',
+          fontSize: 40,
+        }
       }} />
-      <OrderStack.Screen name="Details" component={OrderDetailScreen} />
+      <OrderStack.Screen name="Details" component={OrderDetailScreen} options={{
+        headerShown: false
+      }} />
     </OrderStack.Navigator>
   );
 }
 
 const ProductStack = createNativeStackNavigator();
-function ProductStackScreen(){
+function ProductStackScreen() {
   return (
     <ProductStack.Navigator>
-      <ProductStack.Screen name="List" component={ProductsScreen} 
-        options={{ 
+      <ProductStack.Screen name="List" component={ProductsScreen}
+        options={{
           title: 'magdely',
           headerTitleAlign: 'center',
           headerTitleStyle: {
             fontFamily: 'Ubuntu_700Bold',
             fontSize: 25,
-        } 
-      }}/>
+          }
+        }} />
       <ProductStack.Screen name="Details" component={ProductDetailScreen} />
     </ProductStack.Navigator>
   );
@@ -51,25 +53,25 @@ const Tab = createBottomTabNavigator();
 const BreadNavigator = () => (
   <NavigationContainer>
     <Tab.Navigator screenOptions={({ route }) => ({
-      tabBarIcon: ({focused, color, size }) => {
+      tabBarIcon: ({ focused, color, size }) => {
         let iconName;
 
-        if(route.name === 'Orders'){
+        if (route.name === 'Orders') {
           iconName = focused ? 'clipboard' : 'clipboard-outline';
-        } else if(route.name === 'Products'){
+        } else if (route.name === 'Products') {
           iconName = focused ? 'cube' : 'cube-outline';
         }
 
         return <Icon name={iconName}
-               type='ionicon'
-               size={size}
-               color={color}/>
+          type='ionicon'
+          size={size}
+          color={color} />
       }
     })}>
-      <Tab.Screen name="Orders" component={OrderStackScreen} 
-        options={{ headerShown: false, title: 'Pedidos' }}/>
+      <Tab.Screen name="Orders" component={OrderStackScreen}
+        options={{ headerShown: false, title: 'Pedidos' }} />
       <Tab.Screen name="Products" component={ProductStackScreen}
-        options={{ headerShown: false, title: 'Productos'}}/>
+        options={{ headerShown: false, title: 'Productos' }} />
     </Tab.Navigator>
   </NavigationContainer>
 )

@@ -2,14 +2,14 @@ import React from 'react';
 import { View, Text, StyleSheet, FlatList, TouchableOpacity, Image } from 'react-native';
 
 const List = (props) => {
-    const {itemList, handleModalOpen, Item} = props;
+    const {itemList, handleItemSeleted, Item} = props;
     return (
         <FlatList data={itemList}
         marginTop={8}
         keyExtractor={(item) => item.id.toString()}
         renderItem={
             data => (
-                <Item handleModalOpen={handleModalOpen} item={data.item}/>
+                <Item handleItemSeleted={handleItemSeleted} item={data.item}/>
             )}>
     </FlatList>
     );
