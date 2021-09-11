@@ -5,6 +5,9 @@ import ProductsScreen from './screens/ProductsScreen';
 import { Icon } from 'react-native-elements';
 import AppLoading from 'expo-app-loading';
 
+import { Provider } from 'react-redux';
+import store from './store';
+
 import BreadNavigator from './navigation/BreadNavigator';
 
 import {
@@ -72,8 +75,9 @@ export default function App() {
 
     //   {content}
     // </View>
-
-    <BreadNavigator />
+    <Provider store={store}>
+      <BreadNavigator />
+    </Provider>
   );
 }
 

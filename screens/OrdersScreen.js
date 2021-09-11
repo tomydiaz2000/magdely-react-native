@@ -6,7 +6,7 @@ import AddModal from '../components/AddModal';
 import List from '../components/List';
 import OrderListItem from '../components/List/OrderListItem';
 
-import { ORDER_LIST } from '../data/mock-data';
+import { useSelector, useDispatch, connect} from 'react-redux';
 
 const OrdersScreen = ( { navigation } ) => {
     const [itemList, setItemList] = useState(ORDER_LIST);

@@ -1,4 +1,4 @@
-export const ORDER_STATE = [
+export const ORDER_STATES = [
   {
     id: 1, 
     title: 'Nuevo',
