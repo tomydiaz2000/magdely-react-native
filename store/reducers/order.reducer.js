@@ -1,13 +1,19 @@
 import { ORDER_LIST } from "../../data/mock-data";
+import { SELECT_ORDER } from "../actions/order.action";
 
 const initialState = {
   orders: ORDER_LIST,
   filteredOrder: [],
-  seleted: null
+  seletedID: null
 }
 
 const OrderReducer = (state = initialState, action) => {
-  return state
+  switch(action.type) {
+    case SELECT_ORDER:
+      return {...state, seletedID: action.orderID}
+    default:
+      return state
+  }
 }
 
 export default OrderReducer

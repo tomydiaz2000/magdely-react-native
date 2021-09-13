@@ -22,8 +22,6 @@ import {
   Ubuntu_700Bold_Italic,
 } from '@expo-google-fonts/ubuntu';
 
-
-
 export default function App() {
 
   let [fontsLoaded] = useFonts({

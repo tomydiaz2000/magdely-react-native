@@ -1,29 +1,23 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View, Image, Alert, Dimensions, LayoutAnimation } from 'react-native';
+import { StyleSheet, Text, View, Image } from 'react-native';
 
-import DeleteModal from '../components/DeleteModal';
-import AddModal from '../components/AddModal';
-import List from '../components/List';
-import OrderListItem from '../components/List/OrderListItem';
+import { useSelector } from 'react-redux';
 
-import { ORDER_LIST } from '../data/mock-data';
-
-const OrdersDetailScreen = ({ route, navigation}) => {
-    const { id } = route.params;
+export default function OrdersDetailScreen({ navigation }) {
+    // const { id } = route.params;
     
-    const [itemList, setItemList] = useState(ORDER_LIST);
-    const [item, setItem] = useState(itemList.find(x => x.id === id))
-
-    console.log(item);
+    const orderID = useSelector(state => state.orders.seletedID);
+    const orders = useSelector(state => state.orders.orders);
+    const order = orders.find(x => x.id === orderID);
 
     return (
         <View style={styles.container}>
             <View style={styles.imageContainer}>
-                <Image source={{ uri: item.imageSource }}
+                <Image source={{ uri: order.imageSource }}
                     style={styles.tinyLogo} />
             </View>
             <View style={styles.dataContainer}>
-                <Text style={styles.title}>{item.name}</Text>
+                <Text style={styles.title}>{order.name}</Text>
 
                 <View style={styles.separator} />
 
@@ -38,9 +32,9 @@ const OrdersDetailScreen = ({ route, navigation}) => {
 
                 <View style={styles.rowContainer}>
                     <Text style={styles.placeholderTitle}>Cant.</Text>
-                    <Text style={styles.infoLabel}>{item.cant}</Text>
+                    <Text style={styles.infoLabel}>{order.cant}</Text>
                     <Text style={styles.placeholderTitle}>Precio</Text>
-                    <Text style={styles.infoLabel}> $ {item.price} </Text>
+                    <Text style={styles.infoLabel}> $ {order.price} </Text>
                 </View>
 
                 <View style={styles.separator} />
@@ -134,5 +128,3 @@ const styles = StyleSheet.create({
         elevation: 24,
     }
 });
-
-export default OrdersDetailScreen;

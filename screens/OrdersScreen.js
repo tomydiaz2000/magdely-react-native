@@ -7,8 +7,18 @@ import List from '../components/List';
 import OrderListItem from '../components/List/OrderListItem';
 
 import { useSelector, useDispatch, connect} from 'react-redux';
+import { ORDER_LIST } from "../data/mock-data";
+import { selectOrder } from '../store/actions/order.action';
 
-const OrdersScreen = ( { navigation } ) => {
+export default function OrdersScreen({ navigation }) {
+    const dispatch = useDispatch();
+    const orders = useSelector(state => state.orders.orders);
+
+    const handlerSeletedOrder = (id) => {
+        dispatch(selectOrder(id));
+        navigation.navigate('Details')
+    }
+
     const [itemList, setItemList] = useState(ORDER_LIST);
 
     const [addModalIsVisible, setAddModalIsVisible] = useState(false);
@@ -27,10 +37,6 @@ const OrdersScreen = ( { navigation } ) => {
         setModalIsVisible(false);
         setSeletedItem({});
     };
-
-    const handleItemSeleted = id => {
-        navigation.navigate('Details', { id: id });
-    }
 
     const handleAddOrder = (name, cant, price) => {
         console.log(name, cant, price);
@@ -79,7 +85,7 @@ const OrdersScreen = ( { navigation } ) => {
         <View style={styles.container}>
             <Text style={styles.listTitle}>Mis Pedidos</Text>
 
-            <List itemList={itemList} handleItemSeleted={handleItemSeleted} Item={OrderListItem} />
+            <List itemList={orders} handleItemSeleted={handlerSeletedOrder} Item={OrderListItem} />
 
             <DeleteModal handleCancelModal={handleCancelModal} handleConfirmDelete={handleConfirmDelete} itemSeleted={seletedItem} modalIsVisible={modalIsVisible} />
             <AddModal handleCancelModal={handleCancelModal} modalIsVisible={addModalIsVisible} handleAddOrder={handleAddOrder} />
@@ -135,5 +141,3 @@ const styles = StyleSheet.create({
         flex: 1
     },
 });
-
-export default OrdersScreen;
