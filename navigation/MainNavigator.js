@@ -50,7 +50,7 @@ function ProductStackScreen() {
 
 const Tab = createBottomTabNavigator();
 
-const BreadNavigator = () => (
+const MainNavigator = () => (
   <NavigationContainer>
     <Tab.Navigator screenOptions={({ route }) => ({
       tabBarIcon: ({ focused, color, size }) => {
@@ -77,4 +77,4 @@ const BreadNavigator = () => (
 )
 
 
-export default BreadNavigator;
+export default MainNavigator;
