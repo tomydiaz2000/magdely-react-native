@@ -1,8 +1,8 @@
-import { ORDER_LIST } from "../../data/mock-data";
+import { ORDERS } from "../../data/orders";
 import { SELECT_ORDER } from "../actions/order.action";
 
 const initialState = {
-  orders: ORDER_LIST,
+  orders: ORDERS,
   filteredOrder: [],
   seletedID: null
 }

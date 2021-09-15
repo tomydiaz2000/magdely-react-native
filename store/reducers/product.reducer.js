@@ -1,11 +1,16 @@
-import { PRODUCT_LIST } from "../../data/mock-data";
+import { PRODUCTS } from "../../data/products"
+
 
 const initialState = {
-  products: PRODUCT_LIST,
+  products: PRODUCTS,
   filteredProduct: [],
   seletedID: null
 }
 
 const ProductReducer = (state = initialState, action) => {
-
+  switch(action.type) {
+    case SELECT_PR
+  }
 }
+
+export default ProductReducer
