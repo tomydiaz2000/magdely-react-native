@@ -57,7 +57,22 @@ export default function App() {
   }
 
   return (
-    <MainNavigator />
+    // <View style={{ flex: 1, paddingTop: 40 }}>
+    //   <View style={styles.topBarContainer}>
+    //     <Icon name='bell'
+    //       type='font-awesome-5'
+    //       color='#000' />
+    //     <Text style={styles.title}>magdely</Text>
+    //     <Icon name='user'
+    //       type='font-awesome-5'
+    //       color='#000' />
+    //   </View>
+
+    //   {content}
+    // </View>
+    <Provider store={store}>
+      <BreadNavigator />
+    </Provider>
   );
 }
 
