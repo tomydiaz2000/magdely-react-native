@@ -4,6 +4,9 @@ import OrdersScreen from './screens/OrdersScreen';
 import ProductsScreen from './screens/ProductsScreen';
 import { Icon } from 'react-native-elements';
 import AppLoading from 'expo-app-loading';
+import { Provider } from 'react-redux';
+
+import store from './store';
 
 import MainNavigator from './navigation/MainNavigator';
 
@@ -57,21 +60,8 @@ export default function App() {
   }
 
   return (
-    // <View style={{ flex: 1, paddingTop: 40 }}>
-    //   <View style={styles.topBarContainer}>
-    //     <Icon name='bell'
-    //       type='font-awesome-5'
-    //       color='#000' />
-    //     <Text style={styles.title}>magdely</Text>
-    //     <Icon name='user'
-    //       type='font-awesome-5'
-    //       color='#000' />
-    //   </View>
-
-    //   {content}
-    // </View>
     <Provider store={store}>
-      <BreadNavigator />
+      <MainNavigator />
     </Provider>
   );
 }
