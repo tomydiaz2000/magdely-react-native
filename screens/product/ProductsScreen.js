@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View, Alert } from 'react-native';
-import ProductListItem from '../components/List/ProductListItem';
-import List from '../components/List';
+import ProductListItem from '../../components/List/ProductListItem'
+import List from '../../components/List';
 
 const ProductsScreen = ({ navigation }) => {
     const [itemList, setItemList] = useState([

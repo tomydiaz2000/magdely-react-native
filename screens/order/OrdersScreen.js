@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View, Image, Alert, Dimensions } from 'react-native';
 
-import DeleteModal from '../components/DeleteModal';
-import AddModal from '../components/AddModal';
-import List from '../components/List';
-import OrderListItem from '../components/List/OrderListItem';
+import DeleteModal from '../../components/DeleteModal';
+import AddModal from '../../components/AddModal';
+import List from '../../components/List';
+import OrderListItem from '../../components/List/OrderListItem';
 
 import { useSelector, useDispatch, connect} from 'react-redux';
-import { ORDER_LIST } from "../data/mock-data";
-import { selectOrder } from '../store/actions/order.action';
+import { ORDER_LIST } from "../../data/orders";
+import { selectOrder } from '../../store/actions/order.action';
 
 export default function OrdersScreen({ navigation }) {
     const dispatch = useDispatch();

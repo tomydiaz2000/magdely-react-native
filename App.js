@@ -1,14 +1,10 @@
 import React, { useState } from 'react';
-import { FlatList, StyleSheet, Text, TouchableOpacity, View, Image, Alert, SafeAreaView } from 'react-native';
-import OrdersScreen from './screens/OrdersScreen';
-import ProductsScreen from './screens/ProductsScreen';
-import { Icon } from 'react-native-elements';
 import AppLoading from 'expo-app-loading';
 import { Provider } from 'react-redux';
 
 import store from './store';
 
-import MainNavigator from './navigation/MainNavigator';
+import MainNavigator from './navigation';
 
 import {
   useFonts,
@@ -35,29 +31,7 @@ export default function App() {
     Ubuntu_700Bold_Italic,
   });
 
-  const [visibleView, setVisibleView] = useState('products');
-
-  let content = <ProductsScreen handleNavigation={handleNavigation} />;
-
   if (!fontsLoaded) return <AppLoading />;
-
-  console.log(fontsLoaded);
-
-  const handleNavigation = () => {
-    if (visibleView === 'products') {
-      setVisibleView('orders');
-    }
-    else {
-      setVisibleView('products');
-    }
-  }
-
-  if (visibleView === 'products') {
-    content = <ProductsScreen handleNavigation={handleNavigation} />;
-  }
-  else {
-    content = <OrdersScreen handleNavigation={handleNavigation} />;
-  }
 
   return (
     <Provider store={store}>
@@ -65,18 +39,3 @@ export default function App() {
     </Provider>
   );
 }
-
-const styles = StyleSheet.create({
-  title: {
-    fontFamily: 'Ubuntu_700Bold',
-    fontSize: 25,
-  },
-  topBarContainer: {
-    flexDirection: 'row',
-    padding: 16,
-    justifyContent: 'space-around',
-    borderBottomColor: '#BEBEBE',
-    borderBottomWidth: 1,
-    alignItems: 'center'
-  },
-})

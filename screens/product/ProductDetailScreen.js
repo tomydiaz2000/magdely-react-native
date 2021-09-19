@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View, Image, Alert, Dimensions } from 'react-native';
 
-import DeleteModal from '../components/DeleteModal';
-import AddModal from '../components/AddModal';
-import List from '../components/List';
-import OrderListItem from '../components/List/OrderListItem';
+import DeleteModal from '../../components/DeleteModal';
+import AddModal from '../../components/AddModal';
+import List from '../../components/List';
+import OrderListItem from '../../components/List/OrderListItem';
 
 const ProductDetailScreen = ({handleNavigation}) => {
     return (
