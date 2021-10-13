@@ -4,7 +4,7 @@ import * as React from 'react';
 import OrdersScreen from '../../screens/order/OrdersScreen';
 import OrderDetailScreen from '../../screens/order/OrderDetailScreen';
 
-const Stack = createNativeStackNavigator;
+const Stack = createNativeStackNavigator();
 
 const OrderNavigator = () => (
   <Stack.Navigator>

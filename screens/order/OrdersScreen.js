@@ -10,7 +10,7 @@ import { useSelector, useDispatch, connect} from 'react-redux';
 import { ORDER_LIST } from "../../data/orders";
 import { selectOrder } from '../../store/actions/order.action';
 
-export default function OrdersScreen({ navigation }) {
+const OrdersScreen = ({ navigation }) =>  {
     const dispatch = useDispatch();
     const orders = useSelector(state => state.orders.orders);
 
@@ -141,3 +141,5 @@ const styles = StyleSheet.create({
         flex: 1
     },
 });
+
+export default OrdersScreen

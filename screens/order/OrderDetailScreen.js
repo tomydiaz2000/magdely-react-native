@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Image } from 'react-native';
 
 import { useSelector } from 'react-redux';
 
-export default function OrdersDetailScreen({ navigation }) {
+const OrdersDetailScreen = ({ navigation }) => {
     // const { id } = route.params;
     
     const orderID = useSelector(state => state.orders.seletedID);
@@ -128,3 +128,5 @@ const styles = StyleSheet.create({
         elevation: 24,
     }
 });
+
+export default OrdersDetailScreen
