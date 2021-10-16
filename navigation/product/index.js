@@ -4,10 +4,11 @@ import * as React from 'react';
 import ProductsScreen from '../../screens/product/ProductsScreen';
 import ProductDetailScreen from '../../screens/product/ProductDetailScreen';
 
-const Stack = createNativeStackNavigator;
+const Stack = createNativeStackNavigator();
 
 const ProductNavigator = () => (
-  <Stack.Navigator>
+  <Stack.Navigator
+    initialRouteName="Home">
     <Stack.Screen name="List" component={ProductsScreen}
       options={{
         title: 'magdely',

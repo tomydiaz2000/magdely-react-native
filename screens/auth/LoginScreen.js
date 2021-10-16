@@ -22,12 +22,13 @@ const LoginScreen = () => {
   });
 
   const handleLogIn = () => {
+    console.log('Usuario: ' + formState.inputValues.email + ". Contraseña: " + formState.inputValues.password)
     if (formState.formIsValid) {
       dispatch(login(formState.inputValues.email, formState.inputValues.password));
     } else {
       Alert.alert(
         'Formulario inválido',
-        'Ingresa email y usuario válido',
+        'Ingresa email y contraseña válidos',
         [{ text: 'Ok' }]
       );
     }

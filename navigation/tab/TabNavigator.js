@@ -7,7 +7,7 @@ import OrderNavigator from '../order';
 
 const BottomTabs = createBottomTabNavigator();
 
-const TabNavigator = () => (
+const TabNavigator = () =>  (
   <BottomTabs.Navigator screenOptions={({ route }) => ({
     tabBarIcon: ({ focused, color, size }) => {
       let iconName;
