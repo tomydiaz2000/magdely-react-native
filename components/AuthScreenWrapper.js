@@ -1,7 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, Text, KeyboardAvoidingView, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { COLORS } from '../constants/colors';
 
 const AuthScreenWrapper = ({ children, title, message, buttonText, buttonPath }) => {
   const navigation = useNavigation();
@@ -52,7 +51,6 @@ const styles = StyleSheet.create({
   },
   promptButton: {
     fontSize: 16,
-    color: COLORS.primary,
   },
 });
 

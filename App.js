@@ -4,6 +4,8 @@ import { Provider } from 'react-redux';
 
 import store from './store';
 
+import { init } from './db';
+
 import MainNavigator from './navigation';
 
 import {
@@ -18,8 +20,14 @@ import {
   Ubuntu_700Bold_Italic,
 } from '@expo-google-fonts/ubuntu';
 
-export default function App() {
+init()
+  .then(() => console.log('Database initialized'))
+  .catch((err) => {
+    console.log('Database fail connect')
+    console.log(err.message)
+  })
 
+export default function App() {
   let [fontsLoaded] = useFonts({
     Ubuntu_300Light,
     Ubuntu_300Light_Italic,

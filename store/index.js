@@ -5,8 +5,10 @@ import thunk from 'redux-thunk';
 import OrderStateReducer from "./reducers/orderState.reducer";
 import OrderReducer from "./reducers/order.reducer";
 import AuthReducer from "./reducers/auth.reducer";
+import ProductReducer from "./reducers/product.reducer";
 
 const RootReducer = combineReducers({
+  products: ProductReducer,
   orderStates: OrderStateReducer,
   orders: OrderReducer,
   auth: AuthReducer

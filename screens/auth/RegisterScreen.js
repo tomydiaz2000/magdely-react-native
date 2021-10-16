@@ -3,7 +3,6 @@ import { Alert, StyleSheet } from 'react-native';
 import { Button } from 'react-native-elements';
 import { useDispatch } from 'react-redux';
 import AuthScreenWrapper from '../../components/AuthScreenWrapper';
-import { COLORS } from '../../constants/colors';
 import { signup } from '../../store/actions/auth.action';
 import Input from '../../components/Input';
 import { formReducer, FORM_INPUT_UPDATE } from './formReducer';
@@ -81,7 +80,6 @@ const RegisterScreen = () => {
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: COLORS.primaryColor,
     marginVertical: 20,
   },
 });

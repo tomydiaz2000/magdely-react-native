@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View, Alert } from 'react-native';
 import ProductListItem from '../../components/List/ProductListItem'
 import List from '../../components/List';
+import { FAB } from 'react-native-elements';
 
 const ProductsScreen = ({ navigation }) => {
     const [itemList, setItemList] = useState([
@@ -110,14 +111,16 @@ const ProductsScreen = ({ navigation }) => {
             <AddModal handleCancelModal={handleCancelModal} modalIsVisible={addModalIsVisible} handleAddOrder={handleAddOrder} /> */}
 
 
-            <View style={{flexDirection:'row'}}>
+            {/* <View style={{flexDirection:'row'}}>
                 <TouchableOpacity style={{...styles.containerButton, flex: 1}} onPress={() => handleAddModelOpen()}>
 
                     <View style={[styles.button, styles.shadow]}>
                         <Text style={styles.buttonText}>Agregar Producto</Text>
                     </View>
                 </TouchableOpacity>
-            </View>
+            </View> */}
+
+            <FAB title='Añadir'/>
         </View>
     );
 }
