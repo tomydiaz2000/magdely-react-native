@@ -10,13 +10,16 @@ export const insertProduct = (
     stock,
     cost,
     timePreparation,
-    sync
+    sync,
+    image
 ) => {
+    console.log('timePreparation: ' + timePreparation)
+
     return new Promise((resolve, reject) => {
         db.transaction(
             (tx) => {
-                tx.executeSql('INSERT INTO products (name, description, active, price, stock, cost, timePreparation, sync);',
-                [name, description, active, price, stock, cost, timePreparation, sync],
+                tx.executeSql('INSERT INTO products (name, description, active, price, stock, cost, timePreparation, sync, image) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);',
+                [name, description, active, price, stock, cost, timePreparation, sync, image],
                 (_, result) => resolve(result),
                 (_, err) => reject(err)
                 )

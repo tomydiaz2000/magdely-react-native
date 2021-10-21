@@ -1,16 +1,53 @@
-import { insertProduct, fetchProduct } from "../../db/products"
-
-export const SELECT_PRODUCT = 'SELECT_PRODUCT'
-export const ADD_PRODUCT = 'ADD_PRODUCT'
+import { insertProduct, fetchProduct } from "../../db/products";
+import * as FileSystem from "expo-file-system";
+export const SELECT_PRODUCT = "SELECT_PRODUCT";
+export const ADD_PRODUCT = "ADD_PRODUCT";
+export const FETCH_PRODUCT = "FETCH_PRODUCT";
 
 export const selectProduct = (id) => ({
   type: SELECT_PRODUCT,
-  productID: id
-})
+  productID: id,
+});
 
-export const addProduct = (name, description, active, price, stock, cost, timePreparation, sync) => {
-  return async dispatch => {
+export const loadProducts = () => {
+  return async (dispatch) => {
     try {
+      const result = await fetchProduct();
+      console.log(result);
+
+      dispatch({
+        type: FETCH_PRODUCT,
+        products: result.rows._array,
+      });
+    } catch (error) {
+      console.log(error.message);
+      throw error;
+    }
+  };
+};
+
+export const addProduct = (
+  name,
+  description,
+  active,
+  price,
+  stock,
+  cost,
+  timePreparation,
+  sync,
+  image
+) => {
+  return async (dispatch) => {
+    console.log('Product Action: ' + image)
+    const fileName = image.split("/").pop();
+    const path = FileSystem.documentDirectory + fileName;
+
+    try {
+      FileSystem.moveAsync({
+        from: image,
+        to: path,
+      });
+
       const result = await insertProduct(
         name,
         description,
@@ -18,24 +55,29 @@ export const addProduct = (name, description, active, price, stock, cost, timePr
         price,
         stock,
         cost,
-        timePreparation, 
-        sync
-      )
-
-      dispatch({ type: ADD_PRODUCT, payload: {
-        id: result.insertId,
-        name,
-        description,
-        active,
-        price,
-        stock,
-        cost,
         timePreparation,
-        sync
-      }})
+        sync,
+        path
+      );
+
+      dispatch({
+        type: ADD_PRODUCT,
+        payload: {
+          id: result.insertId,
+          name,
+          description,
+          active,
+          price,
+          stock,
+          cost,
+          timePreparation,
+          sync,
+          image: path
+        },
+      });
     } catch (err) {
-      console.log(err.message)
-      throw err
+      console.log(err.message);
+      throw err;
     }
-  }
-}
+  };
+};

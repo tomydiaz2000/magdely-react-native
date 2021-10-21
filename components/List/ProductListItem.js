@@ -8,7 +8,7 @@ const ProductListItem = (props) => {
          <TouchableOpacity onPress={() => handleModalOpen(item.id)}> 
             <View style={styles.listItem}>
                 <Image source={{
-                    uri: item.imageSource,
+                    uri: item.image,
                 }}
                     style={styles.tinyLogo} />
                 <Text style={styles.itemName}>{item.name}</Text>

@@ -1,33 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View, Alert } from 'react-native';
 import ProductListItem from '../../components/List/ProductListItem'
 import List from '../../components/List';
 import { FAB } from 'react-native-elements';
+import Colors from '../../constants/Colors';
+import { Icon } from 'react-native-elements';
+import { useSelector, useDispatch } from 'react-redux';
+import { loadProducts } from '../../store/actions/product.action';
 
 const ProductsScreen = ({ navigation }) => {
-    const [itemList, setItemList] = useState([
-        {
-            id: 1,
-            imageSource: 'https://www.hola.com/imagenes/cocina/noticiaslibros/20210528190401/dia-internacional-hamburguesa-recetas-2021/0-957-454/dia-hamburguesa-m.jpg',
-            name: 'Hamburguesa',
-            stock: 1,
-            price: 200.00
-        },
-        {
-            id: 2,
-            imageSource: 'https://cdn2.cocinadelirante.com/sites/default/files/styles/gallerie/public/images/2017/04/pizzapepperoni0.jpg',
-            name: 'Pizza',
-            stock: 3,
-            price: 400.00
-        },
-        {
-            id: 3,
-            imageSource: 'https://cdn2.cocinadelirante.com/sites/default/files/images/2020/06/papas-fritas-con-maicena-facil.jpg',
-            name: 'Papas Fritas',
-            stock: 2,
-            price: 350.00
-        },
-    ]);
+    const dispatch = useDispatch()
+    useEffect(() => {
+        dispatch(loadProducts())
+      }, [navigation])
+
+    const produts = useSelector(state => state.products.products)
 
     const [addModalIsVisible, setAddModalIsVisible] = useState(false);
     const [modalIsVisible, setModalIsVisible] = useState(false);
@@ -84,28 +71,17 @@ const ProductsScreen = ({ navigation }) => {
     };
 
     const handleAddModelOpen = () => {
-        setAddModalIsVisible(true);
+        navigation.navigate('Add')
     };
 
     const [seletedItem, setSeletedItem] = useState({});
+
     return (
         <View style={styles.container}>
-            {/* <View style={styles.topBarContainer}>
-                <Icon name='bell'
-                    type='font-awesome-5'
-                    color='#000' />
-                <Text style={{
-                    fontSize: 25,
-                    fontWeight: 'bold',
-                }}>magdely</Text>
-                <Icon name='user'
-                    type='font-awesome-5'
-                    color='#000' />
-            </View> */}
 
             <Text style={styles.listTitle}>Mis Productos</Text>
 
-            <List itemList={itemList} Item={ProductListItem} />
+            <List itemList={produts} Item={ProductListItem} />
 
             {/* <DeleteModal handleCancelModal={handleCancelModal} handleConfirmDelete={handleConfirmDelete} itemSeleted={seletedItem} modalIsVisible={modalIsVisible} />
             <AddModal handleCancelModal={handleCancelModal} modalIsVisible={addModalIsVisible} handleAddOrder={handleAddOrder} /> */}
@@ -120,12 +96,23 @@ const ProductsScreen = ({ navigation }) => {
                 </TouchableOpacity>
             </View> */}
 
-            <FAB title='Añadir'/>
+            <FAB style={styles.fab} icon={
+                <Icon name='add'
+                    type='material'
+                    color='#fff'/>
+                }
+                onPress={() => handleAddModelOpen()}/>
         </View>
     );
 }
 
 const styles = StyleSheet.create({
+    fab: {
+        color: Colors.primaryColor,
+        alignSelf: 'flex-end',
+        marginRight: 16,
+        marginBottom: 16
+    },
     listTitle: {
         fontSize: 30,
         marginTop: 16,

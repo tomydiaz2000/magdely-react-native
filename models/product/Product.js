@@ -1,5 +1,5 @@
 class Product {
-    constructor(id, name, description, active, price, stock, cost, timePreparation, sync) {
+    constructor(id, name, description, active, price, stock, cost, timePreparation, sync, image) {
         this.id = id.toString()
         this.name = name,
         this.description = description,
@@ -8,7 +8,8 @@ class Product {
         this.stock = stock,
         this.cost = cost,
         this.timePreparation = timePreparation,
-        this.sync = sync
+        this.sync = sync,
+        this.image = image
     }
 }
 

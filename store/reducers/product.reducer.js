@@ -1,5 +1,5 @@
 import Product from "../../models/product/Product"
-import { ADD_PRODUCT } from "../actions/product.action"
+import { ADD_PRODUCT, FETCH_PRODUCT } from "../actions/product.action"
 
 const initialState = {
   products: [],
@@ -18,12 +18,30 @@ const ProductReducer = (state = initialState, action) => {
           action.payload.stock,
           action.payload.cost,
           action.payload.timePreparation,
-          action.payload.sync
+          action.payload.sync,
+          action.payload.image
       )
 
       return {
         ...state,
         products: state.products.concat(newProduct)
+      }
+    case FETCH_PRODUCT:
+      console.log(action)
+      return {
+        ...state,
+        products: action.products.map(item => new Product(
+          item.id.toString(),
+          item.name,
+          item.description,
+          item.active,
+          item.price,
+          item.cost,
+          item.stock,
+          item.timePreparation,
+          item.sync,
+          item.image
+        ))
       }
     default:
       return state
