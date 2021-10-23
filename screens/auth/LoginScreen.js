@@ -22,9 +22,12 @@ const LoginScreen = () => {
   });
 
   const handleLogIn = () => {
-    console.log('Usuario: ' + formState.inputValues.email + ". Contraseña: " + formState.inputValues.password)
     if (formState.formIsValid) {
-      dispatch(login(formState.inputValues.email, formState.inputValues.password));
+      try {
+        dispatch(login(formState.inputValues.email, formState.inputValues.password));
+      } catch(err) {
+        console.log(err)
+      }
     } else {
       Alert.alert(
         'Formulario inválido',
@@ -45,6 +48,7 @@ const LoginScreen = () => {
 
   return (
     <AuthScreenWrapper
+      style={styles.container}
       title="INGRESAR"
       message="¿Aún no tienes cuenta?"
       buttonText="Ir al registro"
@@ -72,11 +76,17 @@ const LoginScreen = () => {
         title="INGRESAR"
         onPress={handleLogIn}
         buttonStyle={styles.button}
+        style={{alignItems: 'flex-end', flex: 1}}
       />
     </AuthScreenWrapper>
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: 'column'
+  }
+});
 
 export default LoginScreen;

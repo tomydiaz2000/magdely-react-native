@@ -58,11 +58,11 @@ export const login = (email, password) => {
     if(!response.ok) {
       const errorResponse = await response.json()
       const errorID = errorResponse.error.message
-      console.log(errorResponse)
+      // console.log(errorResponse)
       let message = 'No se ha podido ingresar'
       if(errorID === 'EMAIL_NOT_FOUND') message = 'Este email no se encuentra registrado'
 
-      throw new error(message)
+      throw new Error(message)
     }
 
     const data = await response.json()

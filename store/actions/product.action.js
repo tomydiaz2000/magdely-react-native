@@ -39,15 +39,20 @@ export const addProduct = (
 ) => {
   return async (dispatch) => {
     console.log('Product Action: ' + image)
-    const fileName = image.split("/").pop();
-    const path = FileSystem.documentDirectory + fileName;
 
-    try {
+    var path = image
+
+    if(!image.includes('http')) {
+      const fileName = image.split("/").pop();
+      path = FileSystem.documentDirectory + fileName;
+
       FileSystem.moveAsync({
         from: image,
         to: path,
       });
+    }    
 
+    try {
       const result = await insertProduct(
         name,
         description,

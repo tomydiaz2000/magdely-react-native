@@ -60,6 +60,8 @@ const ProductsScreen = ({ navigation }) => {
         );
     };
 
+   
+
     const handleCancelModal = () => {
         if (modalIsVisible) {
             setSeletedItem({});
@@ -71,7 +73,9 @@ const ProductsScreen = ({ navigation }) => {
     };
 
     const handleAddModelOpen = () => {
-        navigation.navigate('Add')
+        navigation.navigate('Add', {
+            isEditableParam: false
+        })
     };
 
     const [seletedItem, setSeletedItem] = useState({});
