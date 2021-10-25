@@ -2,11 +2,8 @@ import React, { useState, useCallback, useReducer } from "react";
 import {
   StyleSheet,
   Text,
-  TouchableOpacity,
   View,
-  Image,
   Alert,
-  Dimensions,
   ScrollView,
 } from "react-native";
 import { Button, Switch, Icon } from "react-native-elements";
@@ -20,11 +17,7 @@ const AddProductScreen = ({ route, navigation }) => {
   const dispatch = useDispatch();
 
   const [isEnabled, setIsEnabled] = useState(false);
-  const [imageUri, setImageUri] = useState('');
-
-  const { isEditableParam } = route.params;
-
-  const [isEditable, setIsEditable] = useState(isEditableParam)
+  const [imageUri, setImageUri] = useState("");
 
   const handlePickImage = (uri) => {
     setImageUri(uri);
@@ -51,13 +44,7 @@ const AddProductScreen = ({ route, navigation }) => {
   });
 
   const handleSave = () => {
-    console.log("Image length: " + imageUri.length)
-
-    // if(imageUri.length === 0) {
-    //   console.log('In image 0')
-    //   setImageUri('https://i0.wp.com/elfutbolito.mx/wp-content/uploads/2019/04/image-not-found.png?ssl=1')
-    //   console.log('new value image: ' + imageUri)
-    // }
+    console.log("Image length: " + imageUri.length);
 
     if (formState.formIsValid) {
       dispatch(
@@ -70,7 +57,9 @@ const AddProductScreen = ({ route, navigation }) => {
           formState.inputValues.costPrice,
           formState.inputValues.timePreparation,
           false,
-          !imageUri ? 'https://i0.wp.com/elfutbolito.mx/wp-content/uploads/2019/04/image-not-found.png?ssl=1' : imageUri
+          !imageUri
+            ? "https://i0.wp.com/elfutbolito.mx/wp-content/uploads/2019/04/image-not-found.png?ssl=1"
+            : imageUri
         )
       );
       navigation.navigate("List");
@@ -93,10 +82,6 @@ const AddProductScreen = ({ route, navigation }) => {
     [formDispatch]
   );
 
-  const handleEdit = () => {
-    setIsEditable(true)
-  }
-
   return (
     <View style={styles.container}>
       <View style={styles.imageContainer}>
@@ -111,7 +96,6 @@ const AddProductScreen = ({ route, navigation }) => {
             requiere
             errorText="Por favor ingrese un nombre"
             onInputChange={onInputChangeHandler}
-            editable={isEditable}
           />
 
           <Input
@@ -122,7 +106,6 @@ const AddProductScreen = ({ route, navigation }) => {
             errorText="Por favor ingrese un precio"
             onInputChange={onInputChangeHandler}
             keyboardType="decimal-pad"
-            editable={isEditable}
           />
 
           <Input
@@ -133,7 +116,6 @@ const AddProductScreen = ({ route, navigation }) => {
             errorText="Por favor ingrese un precio"
             onInputChange={onInputChangeHandler}
             keyboardType="decimal-pad"
-            editable={isEditable}
           />
 
           <Input
@@ -144,7 +126,6 @@ const AddProductScreen = ({ route, navigation }) => {
             errorText="Por favor ingrese una cantidad"
             onInputChange={onInputChangeHandler}
             keyboardType="numeric"
-            editable={isEditable}
           />
 
           <Input
@@ -154,12 +135,15 @@ const AddProductScreen = ({ route, navigation }) => {
             requiere
             errorText="Por favor ingrese texto"
             onInputChange={onInputChangeHandler}
-            editable={isEditable}
           />
 
           <View styles={styles.rowContainer}>
             <Text>Visible</Text>
-            <Switch value={isEnabled} onValueChange={toggleSwitch} disabled={!isEditable}/>
+            <Switch
+              value={isEnabled}
+              onValueChange={toggleSwitch}
+              disabled={!isEditable}
+            />
           </View>
 
           <Input
@@ -170,34 +154,18 @@ const AddProductScreen = ({ route, navigation }) => {
             keyboardType="numeric"
             errorText="Por favor un tiempo valido"
             onInputChange={onInputChangeHandler}
-            editable={isEditable}
           />
 
-          {isEditable ?
-              <Button
-              title="Guardar"
-              onPress={handleSave}
-              icon={{
-                name: "save",
-                size: 15,
-                color: "white",
-                type: "material",
-              }}
-            ></Button>
-            :
-            <Button
-              title="Editar Producto"
-              onPress={handleEdit}
-              icon={{
-                name: "edit",
-                size: 15,
-                color: "white",
-                type: "material",
-              }}
-            ></Button>
-          }
-
-         
+          <Button
+            title="Guardar"
+            onPress={handleSave}
+            icon={{
+              name: "save",
+              size: 15,
+              color: "white",
+              type: "material",
+            }}
+          ></Button>
         </View>
       </ScrollView>
     </View>

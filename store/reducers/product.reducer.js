@@ -1,5 +1,5 @@
 import Product from "../../models/product/Product"
-import { ADD_PRODUCT, FETCH_PRODUCT } from "../actions/product.action"
+import { ADD_PRODUCT, FETCH_PRODUCT, SELECT_PRODUCT } from "../actions/product.action"
 
 const initialState = {
   products: [],
@@ -42,6 +42,12 @@ const ProductReducer = (state = initialState, action) => {
           item.sync,
           item.image
         ))
+      }
+    case SELECT_PRODUCT:
+      console.log(action)
+      return {
+        ...state,
+        seletedID: action.productID
       }
     default:
       return state

@@ -2,10 +2,9 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 
 const ProductListItem = (props) => {
-    const { handleModalOpen, item } = props;
+    const { handleItemSeleted, item } = props;
     return (
-// onPress={() => handleModalOpen(item.id)}
-         <TouchableOpacity onPress={() => handleModalOpen(item.id)}> 
+         <TouchableOpacity onPress={() => handleItemSeleted(item.id)}> 
             <View style={styles.listItem}>
                 <Image source={{
                     uri: item.image,

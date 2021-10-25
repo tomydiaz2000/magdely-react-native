@@ -6,7 +6,7 @@ import { FAB } from 'react-native-elements';
 import Colors from '../../constants/Colors';
 import { Icon } from 'react-native-elements';
 import { useSelector, useDispatch } from 'react-redux';
-import { loadProducts } from '../../store/actions/product.action';
+import { loadProducts, selectProduct } from '../../store/actions/product.action';
 
 const ProductsScreen = ({ navigation }) => {
     const dispatch = useDispatch()
@@ -14,15 +14,16 @@ const ProductsScreen = ({ navigation }) => {
         dispatch(loadProducts())
       }, [navigation])
 
-    const produts = useSelector(state => state.products.products)
+    const products = useSelector(state => state.products.products)
+
+    console.log(products)
 
     const [addModalIsVisible, setAddModalIsVisible] = useState(false);
     const [modalIsVisible, setModalIsVisible] = useState(false);
 
-
-    const handleModalOpen = id => {
-        setSeletedItem(itemList.find(x => x.id === id))
-        setModalIsVisible(true);
+    const handleSeletedItem = id => {
+        dispatch(selectProduct(id))
+        navigation.navigate('Details')
     };
 
     const handleConfirmDelete = () => {
@@ -60,8 +61,6 @@ const ProductsScreen = ({ navigation }) => {
         );
     };
 
-   
-
     const handleCancelModal = () => {
         if (modalIsVisible) {
             setSeletedItem({});
@@ -78,14 +77,12 @@ const ProductsScreen = ({ navigation }) => {
         })
     };
 
-    const [seletedItem, setSeletedItem] = useState({});
-
     return (
         <View style={styles.container}>
 
             <Text style={styles.listTitle}>Mis Productos</Text>
 
-            <List itemList={produts} Item={ProductListItem} />
+            <List itemList={products} Item={ProductListItem} handleItemSeleted={handleSeletedItem}/>
 
             {/* <DeleteModal handleCancelModal={handleCancelModal} handleConfirmDelete={handleConfirmDelete} itemSeleted={seletedItem} modalIsVisible={modalIsVisible} />
             <AddModal handleCancelModal={handleCancelModal} modalIsVisible={addModalIsVisible} handleAddOrder={handleAddOrder} /> */}
