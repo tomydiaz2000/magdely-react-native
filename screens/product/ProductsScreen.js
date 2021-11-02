@@ -18,9 +18,6 @@ const ProductsScreen = ({ navigation }) => {
 
     console.log(products)
 
-    const [addModalIsVisible, setAddModalIsVisible] = useState(false);
-    const [modalIsVisible, setModalIsVisible] = useState(false);
-
     const handleSeletedItem = id => {
         dispatch(selectProduct(id))
         navigation.navigate('Details')
@@ -71,10 +68,8 @@ const ProductsScreen = ({ navigation }) => {
         }
     };
 
-    const handleAddModelOpen = () => {
-        navigation.navigate('Add', {
-            isEditableParam: false
-        })
+    const handleAddProduct = () => {
+        navigation.navigate('Add')
     };
 
     return (
@@ -102,7 +97,7 @@ const ProductsScreen = ({ navigation }) => {
                     type='material'
                     color='#fff'/>
                 }
-                onPress={() => handleAddModelOpen()}/>
+                onPress={() => handleAddProduct()}/>
         </View>
     );
 }

@@ -8,7 +8,7 @@ const permissionsEnum = {
 };
 
 const ImageSelector = props => {
-    const [pickedUri, setPickedUri] = useState()
+    const [pickedUri, setPickedUri] = useState(props.uri ? props.uri : '')
     const handleTakeImage = async () => {
         const isCameraOK = await verifyPermissions(permissionsEnum.camera)
         if(!isCameraOK) return

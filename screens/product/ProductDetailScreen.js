@@ -5,6 +5,7 @@ import {
   View,
   Alert,
   ScrollView,
+  TextInput
 } from "react-native";
 import { Button, Switch } from "react-native-elements";
 import { useDispatch, useSelector } from "react-redux";
@@ -15,26 +16,23 @@ import ImageSelector from "../../components/ImageSelector";
 
 const ProductDetailScreen = ({ navigation }) => {
   const dispatch = useDispatch();
-
+  console.log("Primera vez")
   const [isEnabled, setIsEnabled] = useState(false);
-  const [imageUri, setImageUri] = useState('');
-
-  const productID = useSelector(state => state.products.seletedID);
-  console.log('El id del product seleccionado es: ' + productID)
-  const products = useSelector(state => state.products.products)
-  console.log('Lista de Products: ' + products)
-  const product = products.find(item => item.id === productID);
-  console.log('Producto Seleccionado: ' + product)
-
   const [isEditable, setIsEditable] = useState(false)
-
+  const [imageUri, setImageUri] = useState('');
   const handlePickImage = (uri) => {
     setImageUri(uri);
   };
 
+  const products = useSelector(state => state.products.products) 
+  const productID = useSelector(state => state.products.seletedID);
+  
+  const productDetail = products.find(item => item.id === productID)
+
+
   const [formState, formDispatch] = useReducer(formReducer, {
     inputValues: {
-      name: "",
+      name: productDetail.name,
       salePrice: "",
       costPrice: "",
       stock: "",
@@ -53,8 +51,6 @@ const ProductDetailScreen = ({ navigation }) => {
   });
 
   const handleSave = () => {
-    console.log("Image length: " + imageUri.length)
-
     if (formState.formIsValid) {
       dispatch(
         addProduct(
@@ -75,8 +71,6 @@ const ProductDetailScreen = ({ navigation }) => {
     }
   };
 
-  const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
-
   const onInputChangeHandler = useCallback(
     (inputIdentifier, inputValue, inputValidity) => {
       formDispatch({
@@ -96,7 +90,7 @@ const ProductDetailScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.imageContainer}>
-        <ImageSelector onImage={handlePickImage} />
+        <ImageSelector onImage={handlePickImage} uri={productDetail.image}/>
       </View>
       <ScrollView>
         <View style={styles.dataContainer}>
@@ -105,14 +99,14 @@ const ProductDetailScreen = ({ navigation }) => {
             label="Nombre"
             placeholder="Ej: Pizza"
             requiere
-            value={product.name}
+            value={productDetail.name}
             errorText="Por favor ingrese un nombre"
             onInputChange={onInputChangeHandler}
             editable={isEditable}
           />
 
           <Input
-            value={product.price}
+            value={productDetail.price}
             id="salePrice"
             label="Precio Venta"
             placeholder="$ 0.00"
@@ -124,7 +118,7 @@ const ProductDetailScreen = ({ navigation }) => {
           />
 
           <Input
-            value={product.cost}
+            value={productDetail.cost}
             id="costPrice"
             label="Precio Costo"
             placeholder="$ 0.00"
@@ -136,7 +130,7 @@ const ProductDetailScreen = ({ navigation }) => {
           />
 
           <Input
-            value={product.stock}
+            value={productDetail.stock}
             id="stock"
             label="Stock"
             placeholder="0"
@@ -148,7 +142,7 @@ const ProductDetailScreen = ({ navigation }) => {
           />
 
           <Input 
-            value={product.description}
+            value={productDetail.description}
             id="description"
             label="Descripción"
             placeholder="Info sobre el producto"
@@ -160,11 +154,11 @@ const ProductDetailScreen = ({ navigation }) => {
 
           <View styles={styles.rowContainer}>
             <Text>Visible</Text>
-            <Switch value={product.active} onValueChange={toggleSwitch} disabled={!isEditable}/>
+            <Switch value={productDetail.active} onValueChange={() => setIsEnabled(!previousState)} disabled={!isEditable}/>
           </View>
 
           <Input
-            value={product.timePreparation}
+            value={productDetail.timePreparation}
             id="timePreparation"
             label="Tiempo de elaboración (Minutos)"
             placeholder="0 minutos"

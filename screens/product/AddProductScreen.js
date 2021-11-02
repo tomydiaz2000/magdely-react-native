@@ -13,7 +13,7 @@ import { formReducer, FORM_INPUT_UPDATE } from "../auth/formReducer";
 import { addProduct } from "../../store/actions/product.action";
 import ImageSelector from "../../components/ImageSelector";
 
-const AddProductScreen = ({ route, navigation }) => {
+const AddProductScreen = ({ navigation }) => {
   const dispatch = useDispatch();
 
   const [isEnabled, setIsEnabled] = useState(false);
@@ -142,7 +142,6 @@ const AddProductScreen = ({ route, navigation }) => {
             <Switch
               value={isEnabled}
               onValueChange={toggleSwitch}
-              disabled={!isEditable}
             />
           </View>
 
